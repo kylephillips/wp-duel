@@ -2,6 +2,8 @@
 use \WP_Query;
 
 require_once('Results.php');
+require_once('Helpers.php');
+
 /**
 * Form Handler for Voting
 */
@@ -26,9 +28,9 @@ class Form {
 	private $contenders;
 
 
-	public function __construct($user_ip)
+	public function __construct()
 	{
-		$this->user_ip = $user_ip;
+		$this->user_ip = Helpers::getIP();
 		$this->setData();
 		$this->processForm();
 	}

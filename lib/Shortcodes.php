@@ -2,6 +2,7 @@
 
 require_once('Duel.php');
 require_once('Form.php');
+require_once('Helpers.php');
 
 /**
 * Shortcodes
@@ -15,72 +16,15 @@ class Shortcodes {
 
 
 	/**
-	* Get User's IP
-	* @return string
-	*/
-	private function getIP()
-	{
-		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-			$ip = $_SERVER['HTTP_CLIENT_IP'];
-		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} else {
-			$ip = $_SERVER['REMOTE_ADDR'];
-		}
-		return $ip;
-	}
-
-
-	/**
 	* Exclude based on plugin setting
 	* @return array of ids to exclude
 	*/
 	public function excludeDuels()
 	{
 		if ( get_option('wpduel_track_votes') == 'ip' ){
-			$exclude = $this->getCompletedByIP();
+			$exclude = Helpers::getCompletedByIP();
 		} else {
-			$exclude = $this->getCompletedByCookie();
-		}
-		return $exclude;
-	}
-
-
-	/**
-	* Get Completed Duels by IP
-	* @return array of ids completed
-	*/
-	private function getCompletedByIP()
-	{
-		global $wpdb;
-		$tablename = $wpdb->prefix . 'wpduel_votes';
-		$ip = $this->getIP();
-		$sql = "SELECT duel_id FROM $tablename WHERE user_ip = '" . $ip . "'";
-		$duels = $wpdb->get_results($sql);
-		if ( $duels ){
-			foreach ( $duels as $duel ){
-				$exclude[] = $duel->duel_id;
-			}
-			$exclude[] = $_SESSION['duel'];
-		} else {
-			$exclude = null;
-		}
-		return $exclude;
-	}
-
-
-	/**
-	* Get Completed Duels by Cookie
-	* @return array of ids completed
-	*/
-	private function getCompletedByCookie()
-	{
-		if ( isset($_COOKIE['duel']) ) {
-			$completed = $_COOKIE['duel'];
-			$exclude = explode(',', $completed);
-			$exclude[] = $_SESSION['duel'];
-		} else {
-			$exclude = null;
+			$exclude = Helpers::getCompletedByCookie();
 		}
 		return $exclude;
 	}
@@ -99,7 +43,7 @@ class Shortcodes {
 		
 		// Process the form or show it
 		if ( isset($_POST['vote']) ){
-			$form_handler = new Form($user_ip = $this->getIP());
+			$form_handler = new Form;
 		} else {
 			$exclude = $this->excludeDuels();
 			$duel = new Duel($duel_id = $a['duel'], $exclude = $exclude);
