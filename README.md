@@ -3,7 +3,7 @@
 
 ## Overview
 
-**WP Duel** is a Wordpress plugin that pits two contenders against each other in a duel.
+**WP Duel** is a Wordpress plugin that pits two contenders against each other in a duel. WP Duel requires PHP v5.3 or higher.
 
 ![Screenshot](https://raw.githubusercontent.com/kylephillips/wp-duel/master/screenshots/wpduel-duel.jpg)
 

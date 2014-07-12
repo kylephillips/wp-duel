@@ -14,7 +14,6 @@ class Shortcodes {
 		add_shortcode('wp_duel_form', array($this, 'wp_duel_form'));
 	}
 
-
 	/**
 	* Exclude based on plugin setting
 	* @return array of ids to exclude
@@ -28,7 +27,6 @@ class Shortcodes {
 		}
 		return $exclude;
 	}
-
 
 	/**
 	* The Form Shortcode
