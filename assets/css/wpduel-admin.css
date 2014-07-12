@@ -12,3 +12,22 @@
     display: block; }
   .wpduel-meta p select {
     width: 100%; }
+
+.wpduel-contender-meta .win-ratio {
+  background-color: #333333;
+  color: white; }
+.wpduel-contender-meta .duels {
+  padding: 0; }
+  .wpduel-contender-meta .duels ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 12px; }
+    .wpduel-contender-meta .duels ul li {
+      margin: 0; }
+      .wpduel-contender-meta .duels ul li a {
+        display: block;
+        padding: 8px;
+        background-color: #f2f2f2; }
+      .wpduel-contender-meta .duels ul li:nth-child(even) a {
+        background-color: #ebebeb; }

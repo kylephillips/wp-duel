@@ -98,7 +98,6 @@ class PostMetaDuel {
 
 		// Verify the nonce & permissions.
 		if( !isset( $_POST['wpduel_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['wpduel_meta_box_nonce'], 'my_wpduel_meta_box_nonce' ) ) return;
-		if( !current_user_can( 'edit_post' ) ) return;
 
 		// Save Contender One
 		if( isset( $_POST['wpduel_contender_one'] ) )

@@ -10,7 +10,6 @@ class PostMetaContender {
 	public function __construct()
 	{
 		add_action( 'add_meta_boxes', [ $this, 'addMeta' ]);
-		add_action( 'save_post', [ $this, 'saveMeta' ]);
 	}
 
 	/**
@@ -20,7 +19,7 @@ class PostMetaContender {
 	{
 		add_meta_box( 
 			'duel-meta-box', 
-			'Duels', 
+			'WP Duel', 
 			array($this, 'metaFields'), 
 			get_option('wpduel_post_type'), 
 			'normal', 
@@ -34,11 +33,12 @@ class PostMetaContender {
 	*/
 	public function metaFields($post)
 	{
-		?>
-		<div class="wpduel-meta">
-			<?php echo $this->duels($post); ?>
-		</div>
-		<?php
+		echo '
+		<div class="wpduel-contender-meta">
+			<div class="duels"><ul>' .
+			$this->duels($post) .
+			'</ul></div>' . $this->getWinRatio($post);
+		'</div>';
 	}
 
 
@@ -66,12 +66,25 @@ class PostMetaContender {
 		if ( $duel_query->have_posts() ) : while ( $duel_query->have_posts() ) : $duel_query->the_post();
 			$one = get_post_meta(get_the_ID(), 'wpduel_contender_one', true);
 			$two = get_post_meta(get_the_ID(), 'wpduel_contender_two', true);
-			$out .= '<p><a href="' . get_edit_post_link(get_the_ID()) . '">' . get_the_title($one) . ' vs ' . get_the_title($two) . '</a></p>';
+			$out .= '<li><a href="' . get_edit_post_link(get_the_ID()) . '">' . get_the_title($one) . ' vs ' . get_the_title($two) . '</a></li>';
 		endwhile;
 			return $out;
 		else :
-			return '<p>Not part of any duels at this time.</p>';
+			return '<li>Not part of any duels at this time.</li>';
 		endif; wp_reset_postdata();
+	}
+
+
+	/**
+	* Get the Contender's Win Ratio
+	*/
+	private function getWinRatio($post)
+	{
+		if ( get_post_meta($post->ID, 'wpduel_win_ratio', true) ){
+			return '<h3 class="win-ratio">Win Ratio: ' . get_post_meta($post->ID, 'wpduel_win_ratio', true) . '%</h3>';
+		} else {
+			return false;
+		}
 	}
 
 }
