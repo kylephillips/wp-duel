@@ -8,7 +8,7 @@
 ![Screenshot](https://raw.githubusercontent.com/kylephillips/wp-duel/master/screenshots/wpduel-duel.jpg)
 
 
-#### Installation 
+### Installation 
 1. Upload the contents of /wpduel/ to the /wp-content/plugins/ directory
 1. Activate WP Duel through the 'Plugins' menu in WordPress
 1. Adjust settings as needed (see list below for a description of plugin settings)
@@ -16,7 +16,7 @@
 
 
 
-#### Settings
+### Settings
 
 * Settings are located under Settings > WP Duel. 
 
@@ -32,5 +32,22 @@
 
 ![Screenshot](https://raw.githubusercontent.com/kylephillips/wp-duel/master/screenshots/wpduel-settings.jpg)
 
-#### Usage
-To display the duel form, include the shortcode ```[wp_duel_form]```. The form is automatically added to singular duel views.
+### Usage
+
+## Creating Duels
+To create a duel, first you must add at least 2 contenders. By default, contenders are available via the new post type created by the plugin "Contenders". If you have selected your own post type as the contender, add the contenders there.
+
+Once contenders have been created, a duel can be created using the "duels" post type installed by the plugin. Select the contenders from the dropdown menus (they will be displayed in the order you select, so "Contender One" will be displayed first).
+
+Contenders can be used across multple duels. 
+
+## Win Ratios
+Win ratios on the form results represent the contenders' win ration for that specific duels. Ratios displayed in the records shortcode reflect the total win ratios across all duels.
+
+## Shortcodes
+To display the duel form, include the shortcode ```[wp_duel_form]```. The form result will display a "next duel" button, which will reload the page and load a new random duel that the user has not yet completed. If all duels have been completed by the user, an "All Completed" message is displayed.
+
+An optional duel id may be passed to the shortcode to display the form for only that duel. ```[wp_duel_form duel="1"]```
+
+## Singular Duel Views
+The form is automatically added to singular duel views.
