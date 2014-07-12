@@ -57,6 +57,7 @@ class Form {
 		if ( $this->validateData() ){
 			$this->setContenders();
 			$this->recordVote();
+			$this->updateWinRatio();
 			$this->displayResults();
 		}
 	}
@@ -140,6 +141,16 @@ class Form {
 	private function setContenders()
 	{
 		$this->contenders = $this->getContenders($this->data['duel_id']);
+	}
+
+
+	/**
+	* Update the contenders' win ratio
+	*/
+	public function updateWinRatio()
+	{
+		Helpers::setRatio($this->contenders['one']);
+		Helpers::setRatio($this->contenders['two']);
 	}
 
 

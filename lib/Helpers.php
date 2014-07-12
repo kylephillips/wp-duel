@@ -58,4 +58,34 @@ class Helpers {
 		return $exclude;
 	}
 
+
+	/**
+	* Calculate & Set a Contender's Win Ratio
+	* @param int
+	*/
+	public static function setRatio($contender)
+	{
+		global $wpdb;
+		$tablename = $wpdb->prefix . 'wpduel_votes';
+
+		// Total Votes
+		$sql = "SELECT COUNT(*) FROM $tablename WHERE contender_one = $contender OR contender_two = $contender";
+		$total_votes = $wpdb->get_var($sql);
+		
+		// Total Wins
+		$sql = "SELECT COUNT(*) FROM $tablename WHERE (contender_one = $contender OR contender_two = $contender) AND vote = $contender";
+		$total_wins = $wpdb->get_var($sql);
+
+		// Calculate the ratio
+		$win_ratio = ( $total_wins / $total_votes ) * 100;
+		$win_ratio = round($win_ratio);
+		
+		if ( get_post_meta($contender, 'wpduel_win_ratio') ){
+			update_post_meta($contender, 'wpduel_win_ratio', $win_ratio);
+		} else {
+			add_post_meta($contender, 'wpduel_win_ratio', $win_ratio);
+		}
+		
+	}
+
 }
