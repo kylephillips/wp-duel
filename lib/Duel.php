@@ -31,9 +31,10 @@ class Duel {
 	{
 		if ( $this->duel_id ){
 			$args = [
-				'post__not_in' => $this->exclude,
 				'post_type' => 'duel',
-				'p' => $this->duel_id
+				'p' => $this->duel_id,
+				'post__not_in' => $this->exclude,
+				'posts_per_page' => 1
 			];
 		} else {
 			$args = [
@@ -45,19 +46,21 @@ class Duel {
 		}
 
 		$duel_query = new \WP_Query($args);
-		if ( $duel_query->have_posts() ) : while ( $duel_query->have_posts() ) : $duel_query->the_post();
+		if ( $duel_query->have_posts() ) : 
 			
-			$contender_one = get_post_meta(get_the_ID(), 'wpduel_contender_one', true);
-			$contender_two = get_post_meta(get_the_ID(), 'wpduel_contender_two', true);
+			while ( $duel_query->have_posts() ) : $duel_query->the_post();
 
-			$duel['title'] = get_the_title();
-			$duel['duel_id'] = get_the_ID();
-			$contender = new Contender;
-			$duel['contender_one'] = $contender->getContender($contender_one);
-			$duel['contender_two'] = $contender->getContender($contender_two);
+				$contender_one = get_post_meta(get_the_ID(), 'wpduel_contender_one', true);
+				$contender_two = get_post_meta(get_the_ID(), 'wpduel_contender_two', true);
 
-		endwhile; 
-		else : // All duels completed
+				$duel['title'] = get_the_title();
+				$duel['duel_id'] = get_the_ID();
+				$contender = new Contender;
+				$duel['contender_one'] = $contender->getContender($contender_one);
+				$duel['contender_two'] = $contender->getContender($contender_two);
+
+			endwhile; 
+		else :
 			return false;
 		endif; wp_reset_postdata();
 		

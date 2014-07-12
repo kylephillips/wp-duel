@@ -1,11 +1,12 @@
 <?php namespace WPDuel;
 /**
-* Custom Post Meta
+* Custom Post Meta for Duel Post Type
 */
-class PostMeta {
+class PostMetaDuel {
 
 	public function __construct()
 	{
+		add_action( 'add_meta_boxes', [$this, 'moveEditor'], 0 );
 		add_action( 'add_meta_boxes', [ $this, 'addMeta' ]);
 		add_action( 'save_post', [ $this, 'saveMeta' ]);
 	}
@@ -17,11 +18,11 @@ class PostMeta {
 	public function addMeta() 
 	{
 		add_meta_box( 
-			'wpsl-meta-box', 
+			'wpduel-meta-box', 
 			'Contenders', 
 			array($this, 'metaFields'), 
 			'duel', 
-			'normal', 
+			'side', 
 			'high' 
 		);
 	}
@@ -106,6 +107,34 @@ class PostMeta {
 		// Save Contender Two
 		if( isset( $_POST['wpduel_contender_two'] ) )
 			update_post_meta( $post_id, 'wpduel_contender_two', esc_attr( $_POST['wpduel_contender_two'] ) );
+	}
+
+
+	/**
+	* Remove the editor meta box and add a new container to move it to
+	*/
+	public function moveEditor()
+	{
+		global $_wp_post_type_features;
+		if (isset($_wp_post_type_features['duel']['editor']) && $_wp_post_type_features['duel']['editor']) {
+			unset($_wp_post_type_features['duel']['editor']);
+			add_meta_box(
+				'description_section',
+				__('Content'),
+				[$this, 'newEditor'],
+				'duel', 
+				'normal', 
+				'low'
+			);
+		}
+	}
+
+	/**
+	* Add the content editor into the new meta box
+	*/
+	function newEditor( $post )
+	{
+		wp_editor($post->post_content, 'content', array('dfw' => true, 'tabindex' => 1) );
 	}
 
 }

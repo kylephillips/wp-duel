@@ -33,11 +33,9 @@ class Shortcodes {
 	public function wp_duel_form($params)
 	{
 		$a = shortcode_atts([
-			'duel' => null,
-			'content' => null
+			'duel' => null
 		], $params );
 		
-		// Process the form or show it
 		( isset($_POST['vote']) ) ? $form_handler = new Form : $this->formView($a);
 	}
 

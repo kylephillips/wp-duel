@@ -3,7 +3,8 @@
 require_once('Activate.php');
 require_once('PostTypes.php');
 require_once('Settings.php');
-require_once('PostMeta.php');
+require_once('PostMetaDuel.php');
+require_once('PostMetaContender.php');
 require_once('Dependencies.php');
 require_once('Shortcodes.php');
 require_once('Cookie.php');
@@ -45,12 +46,13 @@ class WPDuel {
 	*/
 	public function init()
 	{
-		$activate = new Activate;
-		$post_types = new PostTypes;
-		$settings = new Settings;
-		$meta = new PostMeta;
-		$dependencies = new Dependencies;
-		$shortcodes = new Shortcodes;
+		new Activate;
+		new PostTypes;
+		new Settings;
+		new PostMetaDuel;
+		new PostMetaContender;
+		new Dependencies;
+		new Shortcodes;
 		$this->setVersion();
 		$this->loadCookie();
 	}
