@@ -6,7 +6,7 @@ class Activate {
 
 	public function __construct()
 	{
-		register_activation_hook( dirname( dirname(__FILE__) ) . '/wpduel.php', array( $this, 'install' ) );
+		register_activation_hook( dirname( dirname(__FILE__) ) . '/wpduel.php', [ $this, 'install' ] );
 	}
 
 	/**
@@ -23,33 +23,15 @@ class Activate {
 	*/
 	public function setOptions()
 	{
-		if ( !get_option('wpduel_post_type') ){
-			update_option('wpduel_post_type', 'contender');
-		}
-		if ( !get_option('wpduel_show_image') ){
-			update_option('wpduel_show_image', 'yes');
-		}
-		if ( !get_option('wpduel_custom_image_size') ){
-			update_option('wpduel_custom_image_size', 'no');
-		}
-		if ( !get_option('wpduel_wp_image_size') ){
-			update_option('wpduel_wp_image_size', 'thumbnail');
-		}
-		if ( !get_option('wpduel_image_width') ){
-			update_option('wpduel_image_width', '150');
-		}
-		if ( !get_option('wpduel_image_height') ){
-			update_option('wpduel_image_height', '150');
-		}
-		if ( !get_option('wpduel_track_votes') ){
-			update_option('wpduel_track_votes', 'ip');
-		}
-		if ( !get_option('wpduel_output_styles') ){
-			update_option('wpduel_output_styles', 'yes');
-		}
-		if ( !get_option('wpduel_output_js') ){
-			update_option('wpduel_output_js', 'yes');
-		}
+		if ( !get_option('wpduel_post_type') ) update_option('wpduel_post_type', 'contender');
+		if ( !get_option('wpduel_show_image') )	update_option('wpduel_show_image', 'yes');
+		if ( !get_option('wpduel_custom_image_size') ) update_option('wpduel_custom_image_size', 'no');
+		if ( !get_option('wpduel_wp_image_size') ) update_option('wpduel_wp_image_size', 'thumbnail');
+		if ( !get_option('wpduel_image_width') ) update_option('wpduel_image_width', '150');
+		if ( !get_option('wpduel_image_height') ) update_option('wpduel_image_height', '150');
+		if ( !get_option('wpduel_track_votes') ) update_option('wpduel_track_votes', 'ip');
+		if ( !get_option('wpduel_output_styles') ) update_option('wpduel_output_styles', 'yes');
+		if ( !get_option('wpduel_output_js') ) update_option('wpduel_output_js', 'yes');
 	}
 
 

@@ -1,6 +1,6 @@
 <?php namespace WPDuel;
 use \WP_Query;
-
+require_once('Duel.php');
 require_once('Results.php');
 require_once('Helpers.php');
 
@@ -37,6 +37,19 @@ class Form {
 
 
 	/**
+	* Set the form Data
+	*/
+	private function setData()
+	{
+		$this->data = [
+			'nonce' => sanitize_text_field($_POST['wpduel-nonce']),
+			'duel_id' => sanitize_text_field($_POST['duel_id']),
+			'vote' => sanitize_text_field($_POST['vote'])
+		];
+	}
+
+
+	/**
 	* Process the form
 	*/
 	private function processForm()
@@ -46,22 +59,6 @@ class Form {
 			$this->recordVote();
 			$this->displayResults();
 		}
-	}
-
-
-	/**
-	* Set the form Data
-	*/
-	private function setData()
-	{
-		$duel_id = sanitize_text_field($_POST['duel_id']);
-		$vote = sanitize_text_field($_POST['vote']);
-		$nonce = sanitize_text_field($_POST['wpduel-nonce']);
-		$this->data = array(
-			'nonce' => $nonce,
-			'duel_id' => $duel_id,
-			'vote' => $vote
-		);
 	}
 
 
@@ -104,15 +101,14 @@ class Form {
 	{
 		global $wpdb;
 		$tablename = $wpdb->prefix . 'wpduel_votes';
-		$wpdb->insert( $tablename, 
-			array( 
-				'time' => date('Y-m-d H:i:s'), 
-				'user_ip' => $this->user_ip, 
-				'duel_id' => $this->data['duel_id'],
-				'contender_one' => $this->contenders['one'],
-				'contender_two' => $this->contenders['two'],
-				'vote' => $this->data['vote']
-			)
+		$wpdb->insert( $tablename,[
+			'time' => date('Y-m-d H:i:s'), 
+			'user_ip' => $this->user_ip, 
+			'duel_id' => $this->data['duel_id'],
+			'contender_one' => $this->contenders['one'],
+			'contender_two' => $this->contenders['two'],
+			'vote' => $this->data['vote']
+			]
 		);
 		$_SESSION['duel'] = $this->data['duel_id'];
 	}
@@ -130,24 +126,11 @@ class Form {
 
 	/**
 	* Display a form error
+	* @param string
 	*/
 	private function displayError($message)
 	{
 		echo '<div class="error"><p>' . $message . '</p></div>';
-	}
-
-
-	/**
-	* Get Contenders for Duel
-	*/
-	private function getContenders($duel_id)
-	{
-		$duel_query = new WP_Query(array('post_type'=>'duel','p'=>$duel_id));
-		if ( $duel_query->have_posts() ) : while ( $duel_query->have_posts() ) : $duel_query->the_post();
-			$contenders['one'] = get_post_meta(get_the_ID(), 'wpduel_contender_one', true);
-			$contenders['two'] = get_post_meta(get_the_ID(), 'wpduel_contender_two', true);
-			return $contenders;
-		endwhile; endif; wp_reset_postdata();
 	}
 
 
@@ -157,6 +140,21 @@ class Form {
 	private function setContenders()
 	{
 		$this->contenders = $this->getContenders($this->data['duel_id']);
+	}
+
+
+	/**
+	* Get Contenders for Duel
+	* @param int
+	* @return array
+	*/
+	private function getContenders($duel_id)
+	{
+		$duel = new Duel($duel_id);
+		$duel = $duel->getDuel();
+		$contenders['one'] = $duel['contender_one']['id'];
+		$contenders['two'] = $duel['contender_two']['id'];
+		return $contenders;
 	}
 
 

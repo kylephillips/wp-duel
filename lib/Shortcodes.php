@@ -11,8 +11,9 @@ class Shortcodes {
 
 	public function __construct()
 	{
-		add_shortcode('wp_duel_form', array($this, 'wp_duel_form'));
+		add_shortcode('wp_duel_form', [ $this, 'wp_duel_form' ] );
 	}
+
 
 	/**
 	* Exclude based on plugin setting
@@ -20,39 +21,42 @@ class Shortcodes {
 	*/
 	public function excludeDuels()
 	{
-		if ( get_option('wpduel_track_votes') == 'ip' ){
-			$exclude = Helpers::getCompletedByIP();
-		} else {
-			$exclude = Helpers::getCompletedByCookie();
-		}
+		$exclude = ( get_option('wpduel_track_votes') == 'ip' ) ? Helpers::getCompletedByIP() : Helpers::getCompletedByCookie();
 		return $exclude;
 	}
 
+
 	/**
 	* The Form Shortcode
+	* @param Shortcode Parameters
 	*/
-	public function wp_duel_form($atts)
+	public function wp_duel_form($params)
 	{
-		// Shortcode Parameters
-		$a = shortcode_atts(array(
+		$a = shortcode_atts([
 			'duel' => null,
 			'content' => null
-		), $atts );
+		], $params );
 		
 		// Process the form or show it
-		if ( isset($_POST['vote']) ){
-			$form_handler = new Form;
-		} else {
-			$exclude = $this->excludeDuels();
-			$duel = new Duel($duel_id = $a['duel'], $exclude = $exclude);
-			$duel = $duel->getDuel();
+		( isset($_POST['vote']) ) ? $form_handler = new Form : $this->formView($a);
+	}
 
-			if ( $duel ) :
-				$view = ( get_option('wpduel_output_js') == 'yes' ) ? 'wpduel-form.php' : 'wpduel-form-nojs.php';
-				include( dirname( dirname(__FILE__) ) . '/views' . '/' . $view);
-			else :
-				include( dirname( dirname(__FILE__) ) . '/views/all-complete.php');
-			endif;
+
+	/**
+	* Form View
+	* @return html
+	*/
+	private function formView($a)
+	{
+		$exclude = $this->excludeDuels();
+		$duel = new Duel($duel_id = $a['duel'], $exclude = $exclude);
+		$duel = $duel->getDuel();
+
+		if ( $duel ) {
+			$view = ( get_option('wpduel_output_js') == 'yes' ) ? 'wpduel-form.php' : 'wpduel-form-nojs.php';
+			include( dirname( dirname(__FILE__) ) . '/views' . '/' . $view);
+		} else {
+			include( dirname( dirname(__FILE__) ) . '/views/all-complete.php');
 		}
 	}
 

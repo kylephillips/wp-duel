@@ -14,7 +14,7 @@ class Results {
 
 	/**
 	* Contender ID
-	* @var int - Contender User Voted For
+	* @var int 
 	*/
 	private $vote;
 
@@ -26,11 +26,22 @@ class Results {
 	private $results;
 
 
-	public function __construct($duel_id, $vote = null)
+	public function __construct($duel_id = null, $vote = null)
 	{
 		$this->duel_id = $duel_id;
 		$this->vote = $vote;
 		$this->getDuel();
+	}
+
+
+	/**
+	* Get the Duel
+	*/
+	private function getDuel()
+	{
+		$duel = new Duel($this->duel_id);
+		$duel = $duel->getDuel();
+		$this->setResults($duel);
 	}
 
 
@@ -44,18 +55,8 @@ class Results {
 
 
 	/**
-	* Get the total votes for each contender
-	*/
-	private function getDuel()
-	{
-		$duel = new Duel($this->duel_id);
-		$duel = $duel->getDuel();
-		$this->setResults($duel);
-	}
-
-	/**
-	* Set Basic Duel Info
-	* @param duel
+	* Set the Results
+	* @param int
 	*/
 	private function setResults($duel)
 	{
@@ -67,29 +68,27 @@ class Results {
 		$this->results->contender_two['id'] = $duel['contender_two']['id'];
 		$this->results->contender_two['image'] = $duel['contender_two']['image']['src'];
 		$this->results->contender_two['total_votes'] = $this->getTotalVotes($duel['contender_two']['id']);
-
 		$this->results->total_votes = $this->totalDuelVotes();
-		
 		$this->results->contender_one['percentage'] = $this->winningPercentage($this->results->contender_one['total_votes']);
 		$this->results->contender_two['percentage'] = $this->winningPercentage($this->results->contender_two['total_votes']);
-		if ( $this->vote ){
-			$this->results->vote = $this->getContenderTitle();
-		}
+		if ( $this->vote ) $this->results->vote = $this->getContenderTitle();
 	}
+
 
 	/**
 	* Get Total Votes for a Contender
-	* @param contender int
+	* @param int
 	* @return int
 	*/
-	private function getTotalVotes($contender)
+	private function getTotalVotes($contender_id)
 	{
 		global $wpdb;
 		$tablename = $wpdb->prefix . 'wpduel_votes';
-		$sql = "SELECT COUNT(vote) FROM $tablename WHERE duel_id = $this->duel_id AND vote = $contender";
+		$sql = "SELECT COUNT(vote) FROM $tablename WHERE duel_id = $this->duel_id AND vote = $contender_id";
 		$count = $wpdb->get_var($sql);
 		return $count;
 	}
+
 
 	/**
 	* Total Votes for the Duel
@@ -101,10 +100,11 @@ class Results {
 		return $total;
 	}	
 
+
 	/**
 	* Get Contender winning percentage for the duel
-	* @param contender int
-	* @return int - total votes for contender
+	* @param int
+	* @return int
 	*/
 	private function winningPercentage($total_votes)
 	{
@@ -112,6 +112,7 @@ class Results {
 		$percentage = round($percentage);
 		return $percentage;
 	}
+
 
 	/**
 	* Get Contender Name User Voted for

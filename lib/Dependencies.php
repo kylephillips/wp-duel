@@ -6,11 +6,11 @@ class Dependencies {
 
 	public function __construct()
 	{
-		add_action( 'admin_head', array($this, 'adminStyles'));
-		add_action( 'wp_head', array($this, 'highlightColor'));
-		add_action( 'admin_enqueue_scripts', array($this, 'adminScripts' ));
-		add_action( 'wp_enqueue_scripts', array($this, 'frontEndStyles'));
-		add_action( 'wp_enqueue_scripts', array($this, 'frontEndScripts'));
+		add_action( 'admin_head', [ $this, 'adminStyles' ]);
+		add_action( 'wp_head', [ $this, 'highlightColor' ]);
+		add_action( 'admin_enqueue_scripts', [ $this, 'adminScripts' ]);
+		add_action( 'wp_enqueue_scripts', [ $this, 'frontEndStyles' ]);
+		add_action( 'wp_enqueue_scripts', [ $this, 'frontEndScripts' ]);
 	}
 
 	/**

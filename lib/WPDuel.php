@@ -22,8 +22,8 @@ class WPDuel {
 	public function __construct()
 	{
 		$this->version = 0.1;
-		add_filter( 'plugin_action_links_' . 'wpduel/wpduel.php', array($this, 'settingsLink' ) );
-		add_filter( 'the_content', array($this, 'duel_single_view' ));
+		add_filter( 'plugin_action_links_' . 'wpduel/wpduel.php', [ $this, 'settingsLink' ] );
+		add_filter( 'the_content', [ $this, 'duel_single_view' ]);
 		$this->init();
 	}
 
@@ -78,13 +78,13 @@ class WPDuel {
 			$excluded = $shortcode->excludeDuels();
 			if ( $excluded ){
 				if ( !in_array($post->ID, $excluded) ){
-					$content .= $shortcode->wp_duel_form(array('duel' => $post->ID));
+					$content .= $shortcode->wp_duel_form(['duel' => $post->ID]);
 				} else {
 					$results = new Results($post->ID);
 					$results->showResults();
 				}
 			} else {
-				$content .= $shortcode->wp_duel_form(array('duel' => $post->ID));
+				$content .= $shortcode->wp_duel_form(['duel' => $post->ID]);
 			}
 		}
 		return $content;
@@ -96,9 +96,7 @@ class WPDuel {
 	*/
 	public function loadCookie()
 	{
-		if ( get_option('wpduel_track_votes') == 'cookie' ){
-			$cookies = new Cookie;
-		}
+		if ( get_option('wpduel_track_votes') == 'cookie' ) $cookies = new Cookie;
 	}
 
 }

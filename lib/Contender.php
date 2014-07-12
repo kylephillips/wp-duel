@@ -4,11 +4,12 @@ class Contender {
 
 	/**
 	* Get a Contender
+	* @param int
 	* @return array
 	*/
 	public function getContender($id = null)
 	{
-		$contender_query = new \WP_Query(array('post_type'=>get_option('wpduel_post_type'), 'p'=>$id));
+		$contender_query = new \WP_Query(['post_type'=>get_option('wpduel_post_type'), 'p'=>$id]);
 		if ( $contender_query->have_posts() ) : while ( $contender_query->have_posts() ) : $contender_query->the_post();
 
 			// Get the correct size based on setting

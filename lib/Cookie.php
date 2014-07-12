@@ -6,8 +6,8 @@ class Cookie {
 
 	public function __construct()
 	{
-		add_action('init', array($this, 'startSession'));
-		add_action('init', array($this, 'storeCookie'));
+		add_action('init', [ $this, 'startSession' ] );
+		add_action('init', [ $this, 'storeCookie' ] );
 	}
 
 	/**

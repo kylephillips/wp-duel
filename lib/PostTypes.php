@@ -6,8 +6,8 @@ class PostTypes {
 
 	public function __construct()
 	{
-		add_action( 'init', array( $this, 'contenders') );
-		add_action( 'init', array( $this, 'duels' ) );
+		add_action( 'init', [ $this, 'contenders' ] );
+		add_action( 'init', [ $this, 'duels' ] );
 	}
 
 
@@ -17,14 +17,14 @@ class PostTypes {
 	public function contenders()
 	{
 		$display = ( get_option('wpduel_post_type') == 'contender' ) ? true : false;
-		$labels = array(
+		$labels = [
 			'name' => __('Contenders'),  
 			'singular_name' => __('Contender'),
 			'add_new_item'=> 'Add Contender',
 			'edit_item' => 'Edit Contender',
 			'view_item' => 'View Contender'
-		);
-		$args = array(
+		];
+		$args = [
 			'labels' => $labels,
 			'public' => true,  
 			'show_ui' => $display,
@@ -32,10 +32,10 @@ class PostTypes {
 			'capability_type' => 'post',  
 			'hierarchical' => false,  
 			'has_archive' => true,
-			'supports' => array('title', 'editor', 'thumbnail'),
-			'rewrite' => array('slug' => 'contender', 'with_front' => false),
+			'supports' => ['title', 'editor', 'thumbnail'],
+			'rewrite' => ['slug' => 'contender', 'with_front' => false],
 			'menu_icon' => 'dashicons-groups'
-		);
+		];
 		register_post_type( 'contender' , $args );
 	}
 
@@ -45,14 +45,14 @@ class PostTypes {
 	*/
 	public function duels()
 	{
-		$labels = array(
+		$labels = [
 			'name' => __('Duels'),  
 			'singular_name' => __('Duel'),
 			'add_new_item'=> 'Add Duel',
 			'edit_item' => 'Edit Duel',
 			'view_item' => 'View Duel'
-		);
-		$args = array(
+		];
+		$args = [
 			'labels' => $labels,
 			'public' => true,  
 			'show_ui' => true,
@@ -60,10 +60,10 @@ class PostTypes {
 			'capability_type' => 'post',  
 			'hierarchical' => false,  
 			'has_archive' => true,
-			'supports' => array('title', 'editor', 'thumbnail'),
-			'rewrite' => array('slug' => 'contender', 'with_front' => false),
+			'supports' => ['title', 'editor', 'thumbnail'],
+			'rewrite' => ['slug' => 'contender', 'with_front' => false],
 			'menu_icon' => 'dashicons-sort'
-		);
+		];
 		register_post_type( 'duel' , $args );
 	}
 

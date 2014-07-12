@@ -6,8 +6,8 @@ class Settings {
 
 	public function __construct()
 	{
-		add_action( 'admin_menu', array( $this, 'adminMenu' ) );
-		add_action( 'admin_init', array($this, 'registerSettings' ) );
+		add_action( 'admin_menu', [ $this, 'adminMenu' ] );
+		add_action( 'admin_init', [ $this, 'registerSettings' ] );
 		$this->addImageSize();
 	}
 
@@ -35,8 +35,8 @@ class Settings {
 		register_setting( 'wp-duel', 'wpduel_show_image' );
 		register_setting( 'wp-duel', 'wpduel_custom_image_size');
 		register_setting( 'wp-duel', 'wpduel_wp_image_size');
-		register_setting( 'wp-duel', 'wpduel_image_width', array($this, 'validateSize'));
-		register_setting( 'wp-duel', 'wpduel_image_height', array($this, 'validateSize'));
+		register_setting( 'wp-duel', 'wpduel_image_width', [$this, 'validateSize']);
+		register_setting( 'wp-duel', 'wpduel_image_height', [$this, 'validateSize']);
 		register_setting( 'wp-duel', 'wpduel_track_votes');
 		register_setting( 'wp-duel', 'wpduel_output_styles');
 		register_setting( 'wp-duel', 'wpduel_output_js');
@@ -59,7 +59,7 @@ class Settings {
 	public function postTypes()
 	{
 		$selected = get_option('wpduel_post_type');
-		$types = get_post_types(array('public'=>true, 'publicly_queryable'=>true ), 'objects');
+		$types = get_post_types(['public'=>true, 'publicly_queryable'=>true ], 'objects');
 		$output = "";
 
 		foreach( $types as $type ){

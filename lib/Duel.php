@@ -30,18 +30,18 @@ class Duel {
 	public function getDuel()
 	{
 		if ( $this->duel_id ){
-			$args = array(
+			$args = [
 				'post__not_in' => $this->exclude,
 				'post_type' => 'duel',
 				'p' => $this->duel_id
-			);
+			];
 		} else {
-			$args = array(
+			$args = [
 				'post_type' => 'duel',
 				'post__not_in' => $this->exclude,
 				'posts_per_page' => 1,
 				'orderby' => 'rand'
-			);
+			];
 		}
 
 		$duel_query = new \WP_Query($args);
@@ -57,11 +57,11 @@ class Duel {
 			$duel['contender_two'] = $contender->getContender($contender_two);
 
 		endwhile; 
-		else :
-			// All duels completed
+		else : // All duels completed
 			return false;
 		endif; wp_reset_postdata();
-			return $duel;
+		
+		return $duel;
 	}
 
 }
