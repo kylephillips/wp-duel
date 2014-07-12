@@ -1,0 +1,44 @@
+//
+// Form Switch
+// -------------------------------
+.wpduel-switch {
+	@include clearfix();
+	background-color: darken($white, 10%);
+	position: relative;
+	margin-bottom: 20px;
+	ul {
+		position: relative;
+		z-index: 2;
+		@include unstyled();
+		li {
+			float: left;
+			width: 50%;
+			a {
+				display: block;
+				text-align: center;
+				height: 40px;
+				line-height: 40px;
+				text-decoration: none;
+				color: darken($white, 50%);
+			}
+			&.active a {
+				color: $white;
+			}
+		}
+	}
+	span {
+		background-color: $link;
+		display: block;
+		position: absolute;
+		z-index: 1;
+		width: 50%;
+		height: 40px;
+		left: 0;
+		top: 0;
+		@include transition(left, 200ms, ease);
+		&.right {
+			left: 50%;
+			@include transition(left, 200ms, ease);
+		}
+	}
+} // .wpduel-switch

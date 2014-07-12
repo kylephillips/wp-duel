@@ -1,0 +1,28 @@
+//
+// Results
+// -------------------------------
+.wpduel-results {
+	h1 {
+		text-align: center;
+	}
+	ul {
+		@include unstyled();
+		@include clearfix();
+		background-color: darken($white, 6%);
+		padding: 8px;
+		margin-bottom: 20px;
+		li {
+			float: left;
+			width: 50%;
+			text-align: center;
+			img {
+				margin-bottom: 7px;
+			}
+			p {
+				font-size: 1.5em;
+				margin: 0;
+				font-weight: bold;
+			}
+		}
+	}
+}

@@ -1,0 +1,14 @@
+.wpduel-meta:before, .wpduel-meta:after {
+  content: " ";
+  display: table; }
+.wpduel-meta:after {
+  clear: both; }
+.wpduel-meta p {
+  float: left;
+  width: 48%; }
+  .wpduel-meta p.right {
+    float: right; }
+  .wpduel-meta p label {
+    display: block; }
+  .wpduel-meta p select {
+    width: 100%; }

@@ -1,0 +1,18 @@
+@import "_mixins.scss";
+
+.wpduel-meta {
+	@include clearfix();
+	p {
+		float: left;
+		width: 48%;
+		&.right {
+			float: right;
+		}
+		label {
+			display: block;
+		}
+		select {
+			width: 100%;
+		}
+	}
+}

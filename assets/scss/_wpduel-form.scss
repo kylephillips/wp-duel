@@ -1,0 +1,88 @@
+//
+// Form Styles
+// -------------------------------
+.wpduel-form .contenders {
+	@include clearfix();
+	margin-bottom: 20px;
+	text-align: center;
+	position: relative;
+	.contender {
+		float: left;
+		width: 50%;
+		background-color: darken($white, 6%);
+		@include transition(all, 200ms, ease);
+		&.two {
+			float: right;
+			div {
+				padding: 10px 10px 10px 0;
+			}
+		}
+		&.active {
+			background-color: darken($white, 15%);
+			@include transition(all, 200ms, ease);
+			h3 {
+				color: $link;
+			}
+		}
+		div {
+			padding: 10px 0 10px 10px;
+		}
+	}
+	.vs {
+		position: absolute;
+		top: 7px;
+		left: 50%;
+		margin-left: -16px;
+		display: block;
+		font-size: 18px;
+		span {
+			background-color: $link;
+			line-height: 28px;
+			color: $white;
+			width: 32px;
+			height: 32px;
+			font-weight: bold;
+			border-radius: 20px;
+			display: block;
+		}
+	}
+}
+
+.wpduel-form {
+	text-align: center;
+	button[type="submit"]{
+		margin-bottom: 20px;
+	}
+}
+
+@media (max-width: 767px)
+{
+	.wpduel-form .contenders {
+		margin-bottom: 20px;
+		.contender {
+			float: none;
+			width: 100%;
+			&.two {
+				float: none;
+			}
+			img {
+				width: 100%;
+			}
+		}
+		.vs {
+			position: relative;
+			left: 0;
+			width: 100%;
+			margin: 15px 0;
+			display: block;
+			font-size: 18px;
+			span {
+				width: 100%;
+				height: 30px;
+				line-height: 26px;
+				border-radius: 3px;
+				display: block;
+			}
+		}
+	}
+}
