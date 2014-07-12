@@ -27,12 +27,12 @@
 | Output JS | Select "No" to disable plugin scripts. If "No" is selected, the form switch is replaced with standard radio inputs
 | Highlight Color  |  Optional color customization.
 | Limit Votes Using  |  Select how to limit user votes. This prevents users from voting for the same duel more than once
+| Display form on Post Type Singular View | Whether or not to display the form on the singular view for the post type selected for contenders. The shortcode can still be used.
 | Show Thumbnail  |  Show or hide the contender's post thumbnail
 | Image Size | Choose either an existing image size, or set a custom image size. If thumbnail size is changed after adding contenders, post thumbnails will need to be regenerated.
 
 ![Screenshot](https://raw.githubusercontent.com/kylephillips/wp-duel/master/screenshots/wpduel-settings.jpg)
 
-### Usage
 
 ## Creating Duels
 To create a duel, first you must add at least 2 contenders. By default, contenders are available via the new post type created by the plugin "Contenders". If you have selected your own post type as the contender, add the contenders there.
@@ -47,7 +47,9 @@ Win ratios on the form results represent the contenders' win ration for that spe
 ## Shortcodes
 To display the duel form, include the shortcode ```[wp_duel_form]```. The form result will display a "next duel" button, which will reload the page and load a new random duel that the user has not yet completed. If all duels have been completed by the user, an "All Completed" message is displayed.
 
-An optional duel id may be passed to the shortcode to display the form for only that duel. ```[wp_duel_form duel="1"]```
+An optional duel id may be passed to the shortcode to display the form for only that duel. 
+```[wp_duel_form duel="1"]```
 
 ## Singular Duel Views
-The form is automatically added to singular duel views.
+The form is automatically added to singular duel views. To prevent this, change the "Display form on singular posts" setting to "no" under Settings > WP Duel.
+

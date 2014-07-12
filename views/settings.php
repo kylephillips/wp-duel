@@ -61,6 +61,19 @@
 					</label>
 				</td>
 			</tr>
+			<tr>
+				<th scope="row">
+					Display form on Post Type Singular Views
+				</th>
+				<td>
+					<label for="single_view_yes">
+						<input type="radio" value="yes" name="wpduel_single_view" id="single_view_yes" <?php if ( get_option('wpduel_single_view') == 'yes' ) echo 'checked'; ?>> Yes
+					</label><br />
+					<label for="single_view_no">
+						<input type="radio" value="no" name="wpduel_single_view" id="single_view_no" <?php if ( get_option('wpduel_single_view') == 'no' ) echo 'checked'; ?>> No
+					</label>
+				</td>
+			</tr>
 			<tr valign="top">
 				<th scope="row">
 					Show Thumbnail?

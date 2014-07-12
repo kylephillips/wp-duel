@@ -32,6 +32,7 @@ class Activate {
 		if ( !get_option('wpduel_track_votes') ) update_option('wpduel_track_votes', 'ip');
 		if ( !get_option('wpduel_output_styles') ) update_option('wpduel_output_styles', 'yes');
 		if ( !get_option('wpduel_output_js') ) update_option('wpduel_output_js', 'yes');
+		if ( !get_option('wpduel_single_view') ) update_option('wpduel_single_view', 'yes');
 	}
 
 

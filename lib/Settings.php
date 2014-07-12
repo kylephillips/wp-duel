@@ -40,6 +40,7 @@ class Settings {
 		register_setting( 'wp-duel', 'wpduel_track_votes');
 		register_setting( 'wp-duel', 'wpduel_output_styles');
 		register_setting( 'wp-duel', 'wpduel_output_js');
+		register_setting( 'wp-duel', 'wpduel_single_view');
 		register_setting( 'wp-duel', 'wpduel_highlight_color');
 	}
 

@@ -74,6 +74,8 @@ class WPDuel {
 	*/
 	public function duel_single_view($content)
 	{
+		if ( get_option('wpduel_single_view') == 'no' ) return $content;
+				
 		global $post;
 		if ( is_singular('duel') ){
 			$shortcode = new Shortcodes;
