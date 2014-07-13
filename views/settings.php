@@ -50,6 +50,20 @@
 			</tr>
 			<tr>
 				<th scope="row">
+					Display Results using
+				</th>
+				<td>
+					<label for="text">
+						<input type="radio" value="text" name="wpduel_results_view" id="text" <?php if ( get_option('wpduel_results_view') == 'text' ) echo 'checked'; ?>> Text
+					</label><br />
+					<label for="chart">
+						<input type="radio" value="chart" name="wpduel_results_view" id="chart" <?php if ( get_option('wpduel_results_view') == 'chart' ) echo 'checked'; ?>> Chart
+					</label>
+				</td>
+			</tr>
+			<tr>
+			<tr>
+				<th scope="row">
 					Limit votes using
 				</th>
 				<td>

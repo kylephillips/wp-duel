@@ -42,6 +42,7 @@ class Settings {
 		register_setting( 'wp-duel', 'wpduel_output_js');
 		register_setting( 'wp-duel', 'wpduel_single_view');
 		register_setting( 'wp-duel', 'wpduel_highlight_color');
+		register_setting( 'wp-duel', 'wpduel_results_view');
 	}
 
 
