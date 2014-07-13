@@ -1,0 +1,18 @@
+//
+// Records
+// -------------------------------
+.wpduel-records {
+	ul {
+		@include unstyled();
+		margin-bottom: 20px;
+		li {
+			padding: 8px;
+			span {
+				float: right;
+			}
+			&:nth-child(odd){
+				background-color: darken($white, 8%);
+			}
+		}
+	}
+}

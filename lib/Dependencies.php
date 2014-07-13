@@ -52,6 +52,7 @@ class Dependencies {
 			echo '.highlightbg {background-color: ' . get_option('wpduel_highlight_color') . ' !important;}';
 			echo '.wpduel-switch span {background-color: ' . get_option('wpduel_highlight_color') . ' !important;}';
 			echo '.wpduel-form .contenders .contender.active h3 {color: ' . get_option('wpduel_highlight_color') . ' !important;}';
+			echo '.wpduel-records ul li span {color: ' . get_option('wpduel_highlight_color') . ' !important;}';
 			echo '</style>';
 		}
 	}

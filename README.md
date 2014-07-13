@@ -50,6 +50,8 @@ To display the duel form, include the shortcode ```[wp_duel_form]```. The form r
 An optional duel id may be passed to the shortcode to display the form for only that duel. 
 ```[wp_duel_form duel="1"]```
 
+To display a records listing, use the shortcode ```[wp_duel_form]```. A "per_page" parameter may by passed that limits the records to the provided number and adds pagination ```[wp_duel_form per_page="10"]```. All records are shown by default.
+
 ## Singular Duel Views
 The form is automatically added to singular duel views. To prevent this, change the "Display form on singular posts" setting to "no" under Settings > WP Duel.
 

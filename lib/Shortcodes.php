@@ -2,6 +2,7 @@
 
 require_once('Duel.php');
 require_once('Form.php');
+require_once('Records.php');
 require_once('Helpers.php');
 
 /**
@@ -12,6 +13,7 @@ class Shortcodes {
 	public function __construct()
 	{
 		add_shortcode('wp_duel_form', [ $this, 'wp_duel_form' ] );
+		add_shortcode('wp_duel_records', [ $this, 'wp_duel_records' ] );
 	}
 
 
@@ -41,12 +43,24 @@ class Shortcodes {
 
 
 	/**
+	* The Records Shortcode
+	*/
+	public function wp_duel_records($params)
+	{
+		$a = shortcode_atts([
+			'per_page' => null
+		], $params );
+		new Records($a['per_page']);
+	}
+
+
+	/**
 	* Form View
 	* @return html
 	*/
 	private function formView($a)
 	{
-		$exclude = $this->excludeDuels();
+		//$exclude = $this->excludeDuels();
 		$duel = new Duel($duel_id = $a['duel'], $exclude = $exclude);
 		$duel = $duel->getDuel();
 
