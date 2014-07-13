@@ -1,5 +1,6 @@
 # WP Duel
 
+#### [View an example](http://wpduel.com/)
 
 ## Overview
 

@@ -60,7 +60,7 @@ class Shortcodes {
 	*/
 	private function formView($a)
 	{
-		//$exclude = $this->excludeDuels();
+		$exclude = $this->excludeDuels();
 		$duel = new Duel($duel_id = $a['duel'], $exclude = $exclude);
 		$duel = $duel->getDuel();
 
