@@ -61,7 +61,22 @@
 					</label>
 				</td>
 			</tr>
-			<tr>
+			<tr id="chart_one">
+				<th scope="row">
+					Chart Color One
+				</th>
+				<td>
+					<input name="wpduel_chart_color_one" type="text" id="wpduel_chart_color_one" class="color-picker" value="<?php echo get_option('wpduel_chart_color_one'); ?>" />
+				</td>
+			</tr>
+			<tr id="chart_two">
+				<th scope="row">
+					Chart Color Two
+				</th>
+				<td>
+					<input name="wpduel_chart_color_two" type="text" id="wpduel_chart_color_two" class="color-picker" value="<?php echo get_option('wpduel_chart_color_two'); ?>" />
+				</td>
+			</tr>
 			<tr>
 				<th scope="row">
 					Limit votes using
@@ -135,7 +150,7 @@
 					</select>
 				</td>
 			</tr>
-			<tr valign="top" id="wpduel_image_size">
+			<tr valign="top" id="custom_size">
 				<th scope="row">Custom Image Size</th>
 				<td>
 					<div class="error" style="display:none;" id="width_height_error"></div>
@@ -195,9 +210,9 @@ function show_hide_image()
 	var shown = jQuery('input[name="wpduel_show_image"]:checked').val();
 
 	if ( shown === 'no' ){
-		jQuery('#image_size, #wp_image_sizes, #wpduel_image_size').hide();
+		jQuery('#image_size, #wp_image_sizes, #custom_size').hide();
 	} else {
-		jQuery('#image_size, #wp_image_sizes, #wpduel_image_size').show();
+		jQuery('#image_size, #wp_image_sizes, #custom_size').show();
 	}
 }
 
@@ -208,13 +223,27 @@ function toggle_size_type()
 {
 	var use_custom = jQuery('input[name="wpduel_custom_image_size"]:checked').val();
 	if ( use_custom === 'no' ){
-		jQuery('#wpduel_image_size').hide();
+		jQuery('#custom_size').hide();
 		jQuery('#wp_image_sizes').show();
 	} else {
-		jQuery('#wpduel_image_size').show();
+		jQuery('#custom_size').show();
 		jQuery('#wp_image_sizes').hide();
 	}
 }
+
+/**
+* Toggle the chart color fields
+*/
+function toggle_chart_colors()
+{
+	var show = jQuery('input[name="wpduel_results_view"]:checked').val();
+	if ( show !== 'chart' ){
+		jQuery('#chart_one, #chart_two').hide();
+	} else {
+		jQuery('#chart_one, #chart_two').show();
+	}
+}
+
 
 jQuery('#submit').on('click', function(e){
 	e.preventDefault();
@@ -224,6 +253,7 @@ jQuery('#submit').on('click', function(e){
 jQuery(document).ready(function(){
 	show_hide_image();
 	toggle_size_type();
+	toggle_chart_colors();
 	jQuery('.color-picker').wpColorPicker();
 });
 
@@ -234,5 +264,9 @@ jQuery('input[name="wpduel_show_image"]').on('change', function(){
 
 jQuery('input[name="wpduel_custom_image_size"]').on('change', function(){
 	toggle_size_type();
+});
+
+jQuery('input[name="wpduel_results_view"]').on('change', function(){
+	toggle_chart_colors();
 });
 </script>

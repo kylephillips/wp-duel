@@ -8,7 +8,7 @@
 	ul {
 		@include unstyled();
 		@include clearfix();
-		background-color: darken($white, 6%);
+		background-color: darken($white, 4%);
 		padding: 8px;
 		margin-bottom: 20px;
 		li {
@@ -25,4 +25,36 @@
 			}
 		}
 	}
+	&.chart {
+		ul {
+			border: 1px solid $white;
+		}
+		li {
+			padding: 10px 0;
+			background-color: darken($white, 15%);
+			&:first-child {
+				background-color: darken($white, 10%);
+			}
+			div {
+				display: inline-block;
+				margin-left: 10px;
+			}
+			span {
+				width: 30px;
+				height: 30px;
+				display: inline-block;
+				margin-right: 5px;
+				position: relative;
+				top: -10px;
+				border-radius: 20px;
+			}
+			h3 {
+				margin: 0;
+			}
+		}
+	}
+}
+
+#results {
+	margin: 0 auto 20px auto;
 }

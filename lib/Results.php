@@ -50,7 +50,8 @@ class Results {
 	*/
 	public function showResults()
 	{
-		include( dirname( dirname(__FILE__) ) . '/views/wpduel-results.php');
+		$view = ( get_option('wpduel_results_view') == 'text' ) ? 'wpduel-results.php' : 'wpduel-results-chart.php';
+		include( dirname( dirname(__FILE__) ) . '/views/' . $view);
 	}
 
 

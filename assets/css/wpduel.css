@@ -149,7 +149,7 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: whitesmoke;
   padding: 8px;
   margin-bottom: 20px; }
   .wpduel-results ul:before, .wpduel-results ul:after {
@@ -167,6 +167,29 @@
       font-size: 1.5em;
       margin: 0;
       font-weight: bold; }
+.wpduel-results.chart ul {
+  border: 1px solid white; }
+.wpduel-results.chart li {
+  padding: 10px 0;
+  background-color: #d9d9d9; }
+  .wpduel-results.chart li:first-child {
+    background-color: #e6e6e6; }
+  .wpduel-results.chart li div {
+    display: inline-block;
+    margin-left: 10px; }
+  .wpduel-results.chart li span {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-right: 5px;
+    position: relative;
+    top: -10px;
+    border-radius: 20px; }
+  .wpduel-results.chart li h3 {
+    margin: 0; }
+
+#results {
+  margin: 0 auto 20px auto; }
 
 .wpduel-records ul {
   list-style-type: none;

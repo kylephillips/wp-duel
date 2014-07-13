@@ -34,6 +34,8 @@ class Activate {
 		if ( !get_option('wpduel_output_js') ) update_option('wpduel_output_js', 'yes');
 		if ( !get_option('wpduel_single_view') ) update_option('wpduel_single_view', 'yes');
 		if ( !get_option('wpduel_results_view') ) update_option('wpduel_results_view', 'text');
+		if ( !get_option('wpduel_chart_color_one') ) update_option('wpduel_chart_color_one', '#333333');
+		if ( !get_option('wpduel_chart_color_two') ) update_option('wpduel_chart_color_two', '#24890d');
 	}
 
 

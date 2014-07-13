@@ -64,13 +64,10 @@ class Dependencies {
 	{
 		if ( get_option('wpduel_output_js') == 'yes' ){
 			wp_enqueue_script('wpduel', plugins_url() . '/wpduel/assets/js/wpduel.min.js', array('jquery'), '1.0');
-			wp_localize_script(
-				'wpduel',
-				'wpduel',
-				array(
-					'ajaxurl' => admin_url( 'admin-ajax.php' ),
-					'locatorNonce' => wp_create_nonce( 'wpduel-duel-nonce' )
-			));
+		}
+		if ( get_option('wpduel_results_view') == 'chart' ){
+			wp_enqueue_script('jqplot', plugins_url() . '/wpduel/assets/js/jquery.jqplot.min.js', array('jquery'), '1.0.8');
+			wp_enqueue_script('jqplot-pie', plugins_url() . '/wpduel/assets/js/jqplot.pieRenderer.min.js', array('jquery'), '1.0.8');
 		}
 	}
 
