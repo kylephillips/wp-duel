@@ -56,6 +56,8 @@ An optional duel id may be passed to the shortcode to display the form for only 
 
 ![Screenshot](https://raw.githubusercontent.com/kylephillips/wp-duel/master/screenshots/form-examples.jpg)
 
+![Screenshot](https://raw.githubusercontent.com/kylephillips/wp-duel/master/screenshots/results.jpg)
+
 ####Records####
 To display a records listing, use the shortcode ```[wp_duel_records]```. A "per_page" parameter may by passed that limits the records to the provided number and adds pagination ```[wp_duel_records per_page="10"]```. All records are shown by default.
 

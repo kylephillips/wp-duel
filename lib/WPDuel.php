@@ -80,6 +80,7 @@ class WPDuel {
 		if ( is_singular('duel') ){
 			$shortcode = new Shortcodes;
 			$excluded = $shortcode->excludeDuels();
+			
 			if ( $excluded ){
 				if ( !in_array($post->ID, $excluded) ){
 					$content .= $shortcode->wp_duel_form(['duel' => $post->ID]);
