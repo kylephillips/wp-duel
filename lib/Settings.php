@@ -31,21 +31,21 @@ class Settings {
 	*/
 	public function registerSettings()
 	{
-		register_setting( 'wp-duel', 'wpduel_post_type' );
-		register_setting( 'wp-duel', 'wpduel_show_image' );
-		register_setting( 'wp-duel', 'wpduel_custom_image_size');
-		register_setting( 'wp-duel', 'wpduel_wp_image_size');
-		register_setting( 'wp-duel', 'wpduel_image_width', [$this, 'validateSize']);
-		register_setting( 'wp-duel', 'wpduel_image_height', [$this, 'validateSize']);
-		register_setting( 'wp-duel', 'wpduel_track_votes');
-		register_setting( 'wp-duel', 'wpduel_output_styles');
-		register_setting( 'wp-duel', 'wpduel_output_js');
-		register_setting( 'wp-duel', 'wpduel_single_view');
-		register_setting( 'wp-duel', 'wpduel_highlight_color');
-		register_setting( 'wp-duel', 'wpduel_results_view');
-		register_setting( 'wp-duel', 'wpduel_chart_color_one');
-		register_setting( 'wp-duel', 'wpduel_chart_color_two');
-		register_setting( 'wp-duel', 'wpduel_all_complete');
+		register_setting( 'wp-duel-general', 'wpduel_post_type' );
+		register_setting( 'wp-duel-general', 'wpduel_track_votes');
+		register_setting( 'wp-duel-general', 'wpduel_single_view');
+		register_setting( 'wp-duel-display', 'wpduel_output_styles');
+		register_setting( 'wp-duel-display', 'wpduel_output_js');
+		register_setting( 'wp-duel-display', 'wpduel_all_complete');
+		register_setting( 'wp-duel-display', 'wpduel_highlight_color');
+		register_setting( 'wp-duel-display', 'wpduel_results_view');
+		register_setting( 'wp-duel-display', 'wpduel_chart_color_one');
+		register_setting( 'wp-duel-display', 'wpduel_chart_color_two');
+		register_setting( 'wp-duel-thumbnails', 'wpduel_show_image' );
+		register_setting( 'wp-duel-thumbnails', 'wpduel_custom_image_size');
+		register_setting( 'wp-duel-thumbnails', 'wpduel_wp_image_size');
+		register_setting( 'wp-duel-thumbnails', 'wpduel_image_width', [$this, 'validateSize']);
+		register_setting( 'wp-duel-thumbnails', 'wpduel_image_height', [$this, 'validateSize']);
 	}
 
 
@@ -54,6 +54,7 @@ class Settings {
 	*/
 	public function settingsPage()
 	{
+		$tab = ( isset($_GET['tab']) ) ? $_GET['tab'] : 'general';
 		include( dirname( dirname(__FILE__) ) . '/views/settings.php');
 	}
 

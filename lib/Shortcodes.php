@@ -60,10 +60,9 @@ class Shortcodes {
 	*/
 	private function formView($a)
 	{
-		//$exclude = $this->excludeDuels();
+		$exclude = ( $this->excludeDuels() ) ? $this->excludeDuels() : '';
 		$duel = new Duel($duel_id = $a['duel'], $exclude = $exclude);
 		$duel = $duel->getDuel();
-
 		if ( $duel ) {
 			$view = ( get_option('wpduel_output_js') == 'yes' ) ? 'wpduel-form.php' : 'wpduel-form-nojs.php';
 			include( dirname( dirname(__FILE__) ) . '/views' . '/' . $view);

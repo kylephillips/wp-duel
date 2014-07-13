@@ -1,8 +1,15 @@
 <div class="wrap">
-	<h1>WP Duel Settings</h1>
+<h2>WP Duel Settings</h2>
+<h2 class="nav-tab-wrapper">
+	<a class="nav-tab <?php if ( $tab == 'general' ) echo 'nav-tab-active'; ?>" href="options-general.php?page=wp_duel">General</a>
+	<a class="nav-tab <?php if ( $tab == 'display' ) echo 'nav-tab-active'; ?>" href="options-general.php?page=wp_duel&tab=display">Display</a>
+	<a class="nav-tab <?php if ( $tab == 'thumbnails' ) echo 'nav-tab-active'; ?>" href="options-general.php?page=wp_duel&tab=thumbnails">Thumbnails</a>
+</h2>
+
 	<form method="post" action="options.php">
-		<?php settings_fields( 'wp-duel' ); ?>
 		<table class="form-table">
+			<?php if ( $tab == 'general' ) : ?>
+			<?php settings_fields( 'wp-duel-general' ); ?>
 			<tr valign="top">
 			<th scope="row">Contender Post Type</th>
 			<td>
@@ -11,6 +18,36 @@
 				</select>
 			</td>
 			</tr>
+			<tr>
+				<th scope="row">
+					Limit votes using
+				</th>
+				<td>
+					<label for="ip">
+						<input type="radio" value="ip" name="wpduel_track_votes" id="ip" <?php if ( get_option('wpduel_track_votes') == 'ip' ) echo 'checked'; ?>> IP
+					</label><br />
+					<label for="cookie">
+						<input type="radio" value="cookie" name="wpduel_track_votes" id="cookie" <?php if ( get_option('wpduel_track_votes') == 'cookie' ) echo 'checked'; ?>> Cookies
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">
+					Display form on Post Type Singular Views
+				</th>
+				<td>
+					<label for="single_view_yes">
+						<input type="radio" value="yes" name="wpduel_single_view" id="single_view_yes" <?php if ( get_option('wpduel_single_view') == 'yes' ) echo 'checked'; ?>> Yes
+					</label><br />
+					<label for="single_view_no">
+						<input type="radio" value="no" name="wpduel_single_view" id="single_view_no" <?php if ( get_option('wpduel_single_view') == 'no' ) echo 'checked'; ?>> No
+					</label>
+				</td>
+			</tr>
+			<?php endif; ?>
+
+			<?php if ( $tab == 'display' ) : ?>
+			<?php settings_fields( 'wp-duel-display' ); ?>
 			<tr>
 				<th scope="row">
 					Output CSS?
@@ -87,32 +124,10 @@
 					<input name="wpduel_chart_color_two" type="text" id="wpduel_chart_color_two" class="color-picker" value="<?php echo get_option('wpduel_chart_color_two'); ?>" />
 				</td>
 			</tr>
-			<tr>
-				<th scope="row">
-					Limit votes using
-				</th>
-				<td>
-					<label for="ip">
-						<input type="radio" value="ip" name="wpduel_track_votes" id="ip" <?php if ( get_option('wpduel_track_votes') == 'ip' ) echo 'checked'; ?>> IP
-					</label><br />
-					<label for="cookie">
-						<input type="radio" value="cookie" name="wpduel_track_votes" id="cookie" <?php if ( get_option('wpduel_track_votes') == 'cookie' ) echo 'checked'; ?>> Cookies
-					</label>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					Display form on Post Type Singular Views
-				</th>
-				<td>
-					<label for="single_view_yes">
-						<input type="radio" value="yes" name="wpduel_single_view" id="single_view_yes" <?php if ( get_option('wpduel_single_view') == 'yes' ) echo 'checked'; ?>> Yes
-					</label><br />
-					<label for="single_view_no">
-						<input type="radio" value="no" name="wpduel_single_view" id="single_view_no" <?php if ( get_option('wpduel_single_view') == 'no' ) echo 'checked'; ?>> No
-					</label>
-				</td>
-			</tr>
+			<?php endif; ?>
+
+			<?php if ( $tab == 'thumbnails' ) : ?>
+			<?php settings_fields( 'wp-duel-thumbnails' ); ?>
 			<tr valign="top">
 				<th scope="row">
 					Show Thumbnail?
@@ -172,6 +187,7 @@
 					<p><em>Note: Images already posted will need to be regenerated for new size to be available.</em></p>
 				</td>
 			</tr>
+			<?php endif; ?>
 		</table>
 		<?php submit_button(); ?>
 	</form>
