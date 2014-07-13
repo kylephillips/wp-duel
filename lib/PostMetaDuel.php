@@ -22,7 +22,7 @@ class PostMetaDuel {
 			'Contenders', 
 			array($this, 'metaFields'), 
 			'duel', 
-			'side', 
+			'normal', 
 			'high' 
 		);
 	}
@@ -63,7 +63,7 @@ class PostMetaDuel {
 	private function getContenders()
 	{
 		$post_type = get_option('wpduel_post_type');
-		$cont_query = new \WP_Query(['post_type'=>$post_type]);
+		$cont_query = new \WP_Query(['post_type'=>$post_type, 'posts_per_page'=>-1]);
 		if ( $cont_query->have_posts() ) : while ( $cont_query->have_posts() ) : $cont_query->the_post();
 			$contender[get_the_ID()] = get_the_title();
 		endwhile; endif; wp_reset_postdata();
