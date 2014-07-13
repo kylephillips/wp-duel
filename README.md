@@ -42,8 +42,8 @@ Once the contenders have been created, a duel can be created by selecting **Duel
 Contenders can be used across any number of duels. 
 
 ## Win Ratios
-**Form Results Display:** Win ratios on the form results represent the contenders' win ration for that specific duels. 
-**Records Display:** Ratios displayed in the records shortcode reflect the total win ratios across all duels.
+* **Form Results Display:** Win ratios on the form results represent the contenders' win ration for that specific duels. 
+* **Records Display:** Ratios displayed in the records shortcode reflect the total win ratios across all duels.
 
 ## Shortcodes
 
