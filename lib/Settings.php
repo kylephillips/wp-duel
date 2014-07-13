@@ -45,6 +45,7 @@ class Settings {
 		register_setting( 'wp-duel', 'wpduel_results_view');
 		register_setting( 'wp-duel', 'wpduel_chart_color_one');
 		register_setting( 'wp-duel', 'wpduel_chart_color_two');
+		register_setting( 'wp-duel', 'wpduel_all_complete');
 	}
 
 

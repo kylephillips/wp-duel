@@ -42,6 +42,16 @@
 			</tr>
 			<tr>
 				<th scope="row">
+					All complete text
+				</th>
+				<td>
+					<p>Text displays once a user has completed all duels.</p>
+					<?php wp_editor(get_option('wpduel_all_complete'), 'wpduel_all_complete', array('media_buttons' => false, 'tabindex' => 1) ); ?>
+				</td>
+			</tr>
+			<tr>
+			<tr>
+				<th scope="row">
 					Highlight Color
 				</th>
 				<td>

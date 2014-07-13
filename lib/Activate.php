@@ -36,6 +36,7 @@ class Activate {
 		if ( !get_option('wpduel_results_view') ) update_option('wpduel_results_view', 'text');
 		if ( !get_option('wpduel_chart_color_one') ) update_option('wpduel_chart_color_one', '#333333');
 		if ( !get_option('wpduel_chart_color_two') ) update_option('wpduel_chart_color_two', '#24890d');
+		if ( !get_option('wpduel_all_complete') ) update_option('wpduel_all_complete', '<h1>All Complete!</h1>');
 	}
 
 

@@ -68,7 +68,7 @@ class Shortcodes {
 			$view = ( get_option('wpduel_output_js') == 'yes' ) ? 'wpduel-form.php' : 'wpduel-form-nojs.php';
 			include( dirname( dirname(__FILE__) ) . '/views' . '/' . $view);
 		} else {
-			include( dirname( dirname(__FILE__) ) . '/views/all-complete.php');
+			echo get_option('wpduel_all_complete');
 		}
 	}
 
