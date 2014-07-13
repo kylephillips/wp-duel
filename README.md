@@ -35,21 +35,24 @@
 
 
 ## Creating Duels
-To create a duel, first you must add at least 2 contenders. By default, contenders are available via the new post type created by the plugin "Contenders". If you have selected your own post type as the contender, add the contenders there.
+To create a duel, first you must add at least 2 contenders. By default, contenders are available via the new post type created by the plugin ```Contenders```. If you have selected your own post type as the contender under the plugin settings, add them there.
 
-Once contenders have been created, a duel can be created using the "duels" post type installed by the plugin. Select the contenders from the dropdown menus (they will be displayed in the order you select, so "Contender One" will be displayed first).
+Once the contenders have been created, a duel can be created by selecting **Duels > Add New Duel**. Select the contenders from the dropdown menus (they will be displayed in the order you select, so "Contender One" will be displayed first).
 
-Contenders can be used across multple duels. 
+Contenders can be used across any number of duels. 
 
 ## Win Ratios
-Win ratios on the form results represent the contenders' win ration for that specific duels. Ratios displayed in the records shortcode reflect the total win ratios across all duels.
+**Form Results Display:** Win ratios on the form results represent the contenders' win ration for that specific duels. 
+**Records Display:** Ratios displayed in the records shortcode reflect the total win ratios across all duels.
 
 ## Shortcodes
+**The Form**
 To display the duel form, include the shortcode ```[wp_duel_form]```. The form result will display a "next duel" button, which will reload the page and load a new random duel that the user has not yet completed. If all duels have been completed by the user, an "All Completed" message is displayed.
 
 An optional duel id may be passed to the shortcode to display the form for only that duel. 
 ```[wp_duel_form duel="1"]```
 
+**Records**
 To display a records listing, use the shortcode ```[wp_duel_records]```. A "per_page" parameter may by passed that limits the records to the provided number and adds pagination ```[wp_duel_records per_page="10"]```. All records are shown by default.
 
 ## Singular Duel Views
