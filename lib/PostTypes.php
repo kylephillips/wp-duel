@@ -61,7 +61,7 @@ class PostTypes {
 			'hierarchical' => false,  
 			'has_archive' => true,
 			'supports' => ['title', 'editor', 'thumbnail'],
-			'rewrite' => ['slug' => 'contender', 'with_front' => false],
+			'rewrite' => ['slug' => 'duel', 'with_front' => false],
 			'menu_icon' => 'dashicons-sort'
 		];
 		register_post_type( 'duel' , $args );
